@@ -1,4 +1,4 @@
-d3.csv("./data/data.csv").then(function(Data) {
+d3.csv("../data/data.csv").then(function(Data) {
 
     console.log(Data);
 
