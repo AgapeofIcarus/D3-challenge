@@ -74,9 +74,51 @@ let HealthYAxis = "healthcare";
     const xlabelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height})`);
 
-  const povertyLabel = PovlabelsGroup.append("text")
+  const PovLabel = PovlabelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
     .attr("value", "poverty")
     .text("In Poverty (%)")
     .classed("active", true);
+
+    const AgeLabel = PovlabelsGroup.append("text")
+    .attr("x", 0)
+    .attr("y", 60)
+    .attr("value", "age") 
+    .text("Age (Median)")
+    .classed("inactive", true);
+
+  const IncomeLabel = PovlabelsGroup.append("text")
+    .attr("x", 0)
+    .attr("y", 80)
+    .attr("value", "income") 
+    .text("Household Income (Median)")
+    .classed("inactive", true);
+
+    const HealthYlabelsGroup = chartGroup.append("g");
+
+    const healthLabel = HealthYlabelsGroup.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -(height / 2))
+      .attr("y", -40)
+      .attr("value", "healthcare") 
+      .text("Lacks Healthcare (%)")
+      .classed("active", true);
+  
+    const smokesLabel = HealthYlabelsGroup.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -(height / 2))
+      .attr("y", -60)
+      .attr("value", "smokes")
+      .text("Smokes (%)")
+      .classed("inactive", true);
+    
+    const obeseLabel = HealthYlabelsGroup.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -(height / 2))
+      .attr("y", -80)
+      .attr("value", "obesity") 
+      .text("Obese (%)")
+      .classed("inactive", true);
+  
+    circlesGroup = updateToolTip(circlesGroup, PovXAxis, HealthYAxis);
