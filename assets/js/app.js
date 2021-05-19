@@ -122,3 +122,111 @@ let HealthYAxis = "healthcare";
       .classed("inactive", true);
   
     circlesGroup = updateToolTip(circlesGroup, PovXAxis, HealthYAxis);
+
+    PovlabelsGroup.selectAll("text")
+      .on("click", function() {
+      const value = d3.select(this).attr("value");
+      if (value !== PovXAxis) {
+        chosenXAxis = value;
+
+        xLinearScale = xScale(HealthData, PovXAxis);
+
+        xAxis = renderXAxes(xLinearScale, xAxis);
+
+        circlesXY = renderXCircles(circlesXY, xLinearScale, PoxXAxis);
+
+        circlesText = renderXText(circlesText, xLinearScale, PovXAxis);
+
+        circlesGroup = updateToolTip(circlesGroup, PovXAxis, HealthYAxis);
+
+        if (PovXAxis === "age") {
+          povertyLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          ageLabel
+            .classed("active", true)
+            .classed("inactive", false);
+          incomeLabel
+            .classed("active", false)
+            .classed("inactive", true);
+        }
+        else if (chosenXAxis === "income") {
+          povertyLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          ageLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          incomeLabel
+            .classed("active", true)
+            .classed("inactive", false);
+        }
+        else {
+          PovLabel
+            .classed("active", true)
+            .classed("inactive", false);
+          AgeLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          IncomeLabel
+            .classed("active", false)
+            .classed("inactive", true);
+        }
+      }
+    });
+
+    HealthYlabelsGroup.selectAll("text")
+    .on("click", function() {
+
+    const value = d3.select(this).attr("value");
+    if (value !== HealthYAxis) {
+
+      HealthYAxis = value;
+
+      yLinearScale = yScale(stateData, HealthYAxis);
+
+      yAxis = renderYAxes(yLinearScale, yAxis);
+
+      circlesXY = renderYCircles(circlesXY, yLinearScale, HealthYAxis);
+
+      circlesText = renderYText(circlesText, yLinearScale, HealthYAxis);
+
+      circlesGroup = updateToolTip(circlesGroup, PovXAxis, HealthYAxis);
+
+      if (HealthYAxis === "smokes") {
+        healthLabel
+          .classed("active", false)
+          .classed("inactive", true);
+        smokesLabel
+          .classed("active", true)
+          .classed("inactive", false);
+        obeseLabel
+          .classed("active", false)
+          .classed("inactive", true);
+      }
+      else if (HealthYAxis === "obesity"){
+        healthLabel
+          .classed("active", false)
+          .classed("inactive", true);
+        smokesLabel
+          .classed("active", false)
+          .classed("inactive", true);
+        obeseLabel
+          .classed("active", true)
+          .classed("inactive", false);
+      }
+      else {
+        healthLabel
+          .classed("active", true)
+          .classed("inactive", false);
+        smokesLabel
+          .classed("active", false)
+          .classed("inactive", true);
+        obeseLabel
+          .classed("active", false)
+          .classed("inactive", true);
+      }
+    }
+  });
+
+})()
