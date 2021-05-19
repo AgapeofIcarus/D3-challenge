@@ -1,54 +1,50 @@
-d3.csv("../data/data.csv").then(function(Data) {
-
-    console.log(Data);
-
 var svgWidth = 960;
 var svgHeight = 500;
 
 var margin = {
     top: 20,
     right: 40,
-    bottom: 120,
+    bottom: 90,
     left: 100
   };
 
-var width = svgWidth - margin.left - margin.right;
-var height = svgHeight - margin.top - margin.bottom;
+const width = svgWidth - margin.left - margin.right;
+const height = svgHeight - margin.top - margin.bottom;
 
 //Let's make a space for our chart.
 
-var svg = d3.select("#scatter")
-    .append("svg")
-    .attr("width", svgWidth)
-    .attr("height", svgHeight);
+const svg = d3
+  .select("#scatter")
+  .append("svg")
+  .attr("width", svgWidth)
+  .attr("height", svgHeight + 20);
 
-var chartGroup = svg.append("g")
-    .attr("transform", `translate(${margin.left}, ${margin.top})`);
+const chartGroup = svg.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-var PovXAxis = "poverty";
-var HealthYAxis = "healthcare";
+let PovXAxis = "poverty";
+let HealthYAxis = "healthcare";
 
-// This time we're updating x-scale and xAxis var.
+(async function(){
 
-function xScale(Data, PovXAxis) {
-    var xLinearScale = d3.scaleLinear()
-      .domain([d3.min(Data, d => d[PovXAxis]) * 0.8,
-      d3.max(Data, d => d[PovXAxis]) * 1.2
-      ])
-      .range([0, width]);
+  // Import Data
+  const stateData = await d3.csv("assets/data/data.csv");
+
+  stateData.forEach(function(data) {
+    data.poverty    = +data.poverty;
+    data.healthcare = +data.healthcare;
+    data.age        = +data.age;
+    data.smokes     = +data.smokes;
+    data.obesity    = +data.obesity;
+    data.income     = +data.income;
+  });
+// This time we're updating scale and axis functions.
+
+  let xLinearScale = xScale(stateData, chosenXAxis);
+  let yLinearScale = yScale(stateData, chosenYAxis);
   
-    return xLinearScale;
-  }
-  
-  function yScale(Data, HealthYAxis) {
-    var yLinearScale = d3.scaleLinear()
-      .domain([d3.min(Data, d => d[HealthYAxis]) * 0.7,
-      d3.max(Data, d => d[HealthYAxis]) * 1.2
-      ])
-      .range([height, 0]);
-  
-    return yLinearScale;
-  }
+  let bottomAxis = d3.axisBottom(xLinearScale);
+  let leftAxis = d3.axisLeft(yLinearScale);
 
   function renderXAxes(newXScale, xAxis) {
     var bottomAxis = d3.axisBottom(newXScale);
@@ -380,6 +376,5 @@ function xScale(Data, PovXAxis) {
 
 }).catch(function (error) {
   console.log(error);
-});
 });
 
