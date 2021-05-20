@@ -127,7 +127,7 @@ let HealthYAxis = "healthcare";
       .on("click", function() {
       const value = d3.select(this).attr("value");
       if (value !== PovXAxis) {
-        chosenXAxis = value;
+        PovXAxis = value;
 
         xLinearScale = xScale(HealthData, PovXAxis);
 
@@ -150,7 +150,7 @@ let HealthYAxis = "healthcare";
             .classed("active", false)
             .classed("inactive", true);
         }
-        else if (chosenXAxis === "income") {
+        else if (PovXAxis === "income") {
           PovLabel
             .classed("active", false)
             .classed("inactive", true);
