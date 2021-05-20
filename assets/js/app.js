@@ -228,5 +228,4 @@ let HealthYAxis = "healthcare";
       }
     }
   });
-
-})
+})()
