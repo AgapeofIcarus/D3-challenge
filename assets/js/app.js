@@ -140,7 +140,7 @@ let HealthYAxis = "healthcare";
         circlesGroup = updateToolTip(circlesGroup, PovXAxis, HealthYAxis);
 
         if (PovXAxis === "age") {
-          povertyLabel
+          PovLabel
             .classed("active", false)
             .classed("inactive", true);
           ageLabel
@@ -151,7 +151,7 @@ let HealthYAxis = "healthcare";
             .classed("inactive", true);
         }
         else if (chosenXAxis === "income") {
-          povertyLabel
+          PovLabel
             .classed("active", false)
             .classed("inactive", true);
           ageLabel
