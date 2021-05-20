@@ -143,10 +143,10 @@ let HealthYAxis = "healthcare";
           PovLabel
             .classed("active", false)
             .classed("inactive", true);
-          ageLabel
+          AgeLabel
             .classed("active", true)
             .classed("inactive", false);
-          incomeLabel
+          IncomeLabel
             .classed("active", false)
             .classed("inactive", true);
         }
@@ -154,10 +154,10 @@ let HealthYAxis = "healthcare";
           PovLabel
             .classed("active", false)
             .classed("inactive", true);
-          ageLabel
+          AgeLabel
             .classed("active", false)
             .classed("inactive", true);
-          incomeLabel
+          IncomeLabel
             .classed("active", true)
             .classed("inactive", false);
         }
