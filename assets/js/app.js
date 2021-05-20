@@ -1,7 +1,7 @@
-var svgWidth = 960;
-var svgHeight = 500;
+const svgWidth = 960;
+const svgHeight = 500;
 
-var margin = {
+const margin = {
     top: 20,
     right: 40,
     bottom: 90,
