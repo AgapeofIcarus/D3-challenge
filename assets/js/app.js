@@ -71,7 +71,7 @@ let HealthYAxis = "healthcare";
     .attr("dy", d => yLinearScale(d[HealthYAxis]) + 5)
     .classed("stateText", true);
   
-    const xlabelsGroup = chartGroup.append("g")
+    const PovlabelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height})`);
 
   const PovLabel = PovlabelsGroup.append("text")
