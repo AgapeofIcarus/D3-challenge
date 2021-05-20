@@ -229,4 +229,4 @@ let HealthYAxis = "healthcare";
     }
   });
 
-})()
+})
